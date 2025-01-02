@@ -1,0 +1,115 @@
+
+@import"https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap";*,*::before,*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline
+  }
+  
+  :root {
+      --fundo: #ffffff;
+      --fonte1:   #5BA9D9;
+      --fonte2: #4E9FBF;
+      --fonte3: #012840;
+    }
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0 auto;
+        padding: 0;
+        box-sizing: border-box;
+        font-size: large;
+        
+    }
+/* Contato e Redes Sociais */
+.contact-section {
+    background-color:var(--fonte1);
+    color: white;
+    font-size: 14px;
+  }
+  
+  .contact-section a {
+    color: var(--fundo);
+    text-decoration: none;
+  }
+  
+  .contact-section a:hover {
+    color: #ffcc00;
+    text-decoration: none;
+  }
+  
+  .social-icons a {
+    color: var(--fundo);
+    font-size: 14px;
+    transition: color 0.3s ease;
+  }
+  
+  .social-icons a:hover {
+    color: #ffcc00;
+  }
+
+  /* Navbar */
+  .navbar {
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar-brand img {
+   
+    transition: transform 0.3s ease;
+  }
+  
+  .navbar-brand img:hover {
+    transform: scale(1.1);
+  }
+  
+  .nav-link {
+    color: black;
+    font-weight: 400;
+  }
+  
+  .nav-link:hover {
+    color: var(--fonte1);
+  }
+
+  .encontrar {
+    background-color: var(--fonte1);
+    display: flex; /* Ativa o Flexbox */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    text-align: center; /* Alinha o texto no centro */
+   height: 250px;
+    padding: 20px; /* Espaçamento interno opcional */
+}
+
+
+    h2 {
+      color: #ffffff;
+      font-weight: 300;
+      position: relative;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+     h2::after {
+      content: "";
+      position: absolute;
+      width: 90px;
+      height: 3px;
+      background-color: var(--fonte2);
+      bottom: -10px;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+
+
+
+
+
+
+
+
+
+
+
