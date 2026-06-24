@@ -1,0 +1,1891 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="WaterCore - Água Mineral de Alta Qualidade em Moçambique" />
+    <title>WaterCore | Água Mineral com Qualidade</title>
+
+    <!-- Bootstrap 5 + ícones -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <link rel="icon" href="./assets/img/logo.png" />
+
+    <style>
+        /* ===== RESET & VARIÁVEIS ===== */
+        :root {
+            --primary: #0a6e8a;
+            --primary-dark: #06435a;
+            --primary-light: #5BA9D9;
+            --secondary: #1a2a3a;
+            --accent: #f39c12;
+            --success: #27ae60;
+            --gradient-main: linear-gradient(135deg, #06435a 0%, #0a6e8a 50%, #5BA9D9 100%);
+            --gradient-cta: linear-gradient(135deg, #06435a 0%, #0a6e8a 100%);
+            --gradient-success: linear-gradient(135deg, #27ae60, #2ecc71);
+            --shadow-sm: 0 4px 20px rgba(10, 110, 138, 0.08);
+            --shadow-md: 0 8px 40px rgba(10, 110, 138, 0.12);
+            --shadow-lg: 0 20px 60px rgba(10, 110, 138, 0.15);
+            --border-radius: 16px;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #1a2a3a;
+            overflow-x: hidden;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-main);
+            border-radius: 10px;
+        }
+
+        /* ===== TOP BAR ===== */
+        .top-bar {
+            background: var(--gradient-main);
+            color: white;
+            position: relative;
+            z-index: 1030;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .top-bar a {
+            color: rgba(255, 255, 255, 0.85);
+            transition: var(--transition);
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+
+        .top-bar a:hover {
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .top-bar .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+            font-size: 0.85rem;
+        }
+
+        .top-bar .social-icons a:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.06);
+            transition: var(--transition);
+            padding: 0.5rem 0;
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand img {
+            transition: var(--transition);
+        }
+
+        .navbar-brand:hover img {
+            transform: scale(1.05) rotate(-3deg);
+        }
+
+        .navbar-nav .nav-link {
+            font-weight: 600;
+            color: #2c3e50 !important;
+            padding: 0.6rem 1.2rem !important;
+            border-radius: 50px;
+            transition: var(--transition);
+            position: relative;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+        }
+
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--gradient-main);
+            transition: var(--transition);
+            border-radius: 10px;
+            transform: translateX(-50%);
+        }
+
+        .navbar-nav .nav-link:hover::after,
+        .navbar-nav .nav-link.active::after {
+            width: 60%;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--primary) !important;
+            transform: translateY(-2px);
+        }
+
+        .navbar-nav .nav-link.active {
+            color: var(--primary) !important;
+            background: rgba(10, 110, 138, 0.08);
+        }
+
+        /* ===== CAROUSEL ===== */
+        #heroCarousel {
+            position: relative;
+            overflow: hidden;
+        }
+
+        #heroCarousel .carousel-item {
+            position: relative;
+        }
+
+        #heroCarousel .carousel-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(6, 67, 90, 0.3), rgba(6, 67, 90, 0.7));
+            z-index: 1;
+        }
+
+        #heroCarousel .carousel-item img {
+            height: 600px;
+            object-fit: cover;
+            filter: brightness(0.85);
+        }
+
+        .carousel-caption {
+            z-index: 2;
+            bottom: 30%;
+            text-align: left;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            max-width: 600px;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .carousel-caption h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .carousel-caption p {
+            font-size: 1.3rem;
+            font-weight: 300;
+            opacity: 0.95;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 60px;
+            height: 60px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+        }
+
+        .carousel-control-prev:hover,
+        .carousel-control-next:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-indicators button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid white;
+            transition: var(--transition);
+        }
+
+        .carousel-indicators button.active {
+            background: var(--primary-light);
+            border-color: var(--primary-light);
+            transform: scale(1.2);
+        }
+
+        /* ===== SEÇÃO SOBRE ===== */
+        .about-section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .about-image {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.03);
+        }
+
+        .about-content h2 {
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+        }
+
+        .about-content h2 span {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-content p {
+            color: #64748b;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .stat-item .number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-item .label {
+            font-size: 0.9rem;
+            color: #64748b;
+            font-weight: 500;
+            margin-top: 0.25rem;
+        }
+
+        /* ===== SEÇÃO SERVIÇOS ===== */
+        .services-section {
+            padding: 5rem 0;
+            background: #f8fafc;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header h2 span {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            color: #64748b;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            height: 100%;
+            border: 1px solid rgba(10, 110, 138, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-main);
+            transform: scaleX(0);
+            transition: var(--transition);
+            transform-origin: left;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-card .icon-wrapper {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: var(--gradient-main);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .service-card:hover .icon-wrapper {
+            transform: scale(1.1) rotate(-10deg);
+            box-shadow: 0 10px 30px rgba(10, 110, 138, 0.3);
+        }
+
+        .service-card .icon-wrapper i {
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .service-card h5 {
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card p {
+            color: #64748b;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* ===== SEÇÃO PRODUTOS ===== */
+        .products-section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            height: 100%;
+            border: 1px solid rgba(10, 110, 138, 0.05);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .product-card .product-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-card .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-card .product-image .badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--gradient-success);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .product-card .product-body {
+            padding: 1.5rem;
+        }
+
+        .product-card .product-body h5 {
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-card .product-body .price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0.5rem 0;
+        }
+
+        .product-card .product-body p {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .product-card .product-body .btn-order {
+            background: var(--gradient-main);
+            color: white;
+            border: none;
+            padding: 0.6rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .product-card .product-body .btn-order:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ===== SEÇÃO DIFERENCIAIS ===== */
+        .features-section {
+            padding: 5rem 0;
+            background: #f8fafc;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            height: 100%;
+            border: 1px solid rgba(10, 110, 138, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-main);
+            transform: scaleX(0);
+            transition: var(--transition);
+            transform-origin: left;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-card .icon-wrapper {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: var(--gradient-main);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover .icon-wrapper {
+            transform: scale(1.1) rotate(-10deg);
+            box-shadow: 0 10px 30px rgba(10, 110, 138, 0.3);
+        }
+
+        .feature-card .icon-wrapper i {
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .feature-card h5 {
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-card p {
+            color: #64748b;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* ===== SEÇÃO DEPOIMENTOS ===== */
+        .testimonials-section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .testimonial-card {
+            background: #f8fafc;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            transition: var(--transition);
+            height: 100%;
+            border: 1px solid rgba(10, 110, 138, 0.05);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .testimonial-card .stars {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card .quote {
+            font-size: 1rem;
+            color: #475569;
+            line-height: 1.7;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-card .author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-card .author img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .testimonial-card .author .name {
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        .testimonial-card .author .role {
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        /* ===== SEÇÃO BLOG ===== */
+        .blog-section {
+            padding: 5rem 0;
+            background: #f8fafc;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            height: 100%;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .blog-card .blog-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .blog-card .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.05);
+        }
+
+        .blog-card .blog-body {
+            padding: 1.5rem;
+        }
+
+        .blog-card .blog-body .category {
+            display: inline-block;
+            background: var(--gradient-main);
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .blog-card .blog-body h5 {
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-card .blog-body p {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .blog-card .blog-body .read-more {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .blog-card .blog-body .read-more:hover {
+            gap: 1rem;
+            color: var(--primary-dark);
+        }
+
+        /* ===== SEÇÃO CONTATO ===== */
+        .contact-section-main {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .contact-info-card {
+            padding: 2rem;
+            background: #f8fafc;
+            border-radius: var(--border-radius);
+            height: 100%;
+            transition: var(--transition);
+        }
+
+        .contact-info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .contact-info-card .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info-card .info-item .icon {
+            width: 50px;
+            height: 50px;
+            min-width: 50px;
+            background: var(--gradient-main);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .contact-info-card .info-item .text h6 {
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-info-card .info-item .text p {
+            color: #64748b;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .contact-form {
+            padding: 2rem;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(10, 110, 138, 0.05);
+        }
+
+        .contact-form .form-control {
+            border-radius: var(--border-radius);
+            padding: 0.8rem 1.2rem;
+            border: 2px solid #e2e8f0;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .contact-form .form-control:focus {
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 4px rgba(10, 110, 138, 0.1);
+        }
+
+        .contact-form .btn-submit {
+            background: var(--gradient-main);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .contact-form .btn-submit:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ===== CTA BANNER ===== */
+        .cta-banner {
+            background: var(--gradient-cta);
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-banner::before {
+            content: '💧';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.05;
+            right: -5%;
+            top: -30%;
+            transform: rotate(15deg);
+        }
+
+        .cta-banner::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-banner h1 {
+            font-weight: 900;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-banner h4 {
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .btn-cta {
+            background: white;
+            color: var(--primary-dark);
+            padding: 0.8rem 3rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn-cta:hover {
+            background: transparent;
+            color: white;
+            border-color: white;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #0b1a2a;
+            color: #e2e8f0;
+            padding-top: 4rem;
+        }
+
+        .footer .brand-text {
+            font-size: 2rem;
+            font-weight: 900;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer p {
+            color: #94a3b8;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .footer h5 {
+            color: white;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        .footer h5::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--gradient-main);
+            border-radius: 10px;
+        }
+
+        .footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer ul li a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .footer ul li a:hover {
+            color: white;
+            transform: translateX(5px);
+            display: inline-block;
+        }
+
+        .footer .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            color: #94a3b8;
+            transition: var(--transition);
+            font-size: 1.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer .social-links a:hover {
+            background: var(--gradient-main);
+            color: white;
+            transform: translateY(-5px);
+            border-color: transparent;
+            box-shadow: 0 8px 25px rgba(10, 110, 138, 0.3);
+        }
+
+        .footer .contact-info i {
+            color: var(--primary-light);
+            width: 25px;
+            font-size: 1.1rem;
+        }
+
+        .footer .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 2rem;
+            margin-top: 3rem;
+            color: #64748b;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .footer .copyright span {
+            color: white;
+            font-weight: 600;
+        }
+
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 992px) {
+            .carousel-caption {
+                bottom: 20%;
+                max-width: 100%;
+                text-align: center;
+            }
+
+            .carousel-caption h2 {
+                font-size: 2.5rem;
+            }
+
+            #heroCarousel .carousel-item img {
+                height: 450px;
+            }
+
+            .cta-banner h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-image img {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .carousel-caption {
+                bottom: 15%;
+                padding: 1.5rem;
+                background: rgba(0, 0, 0, 0.5);
+            }
+
+            .carousel-caption h2 {
+                font-size: 1.8rem;
+            }
+
+            .carousel-caption p {
+                font-size: 1rem;
+            }
+
+            #heroCarousel .carousel-item img {
+                height: 350px;
+            }
+
+            .carousel-control-prev,
+            .carousel-control-next {
+                width: 40px;
+                height: 40px;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .about-content h2 {
+                font-size: 2rem;
+            }
+
+            .cta-banner {
+                padding: 3rem 0;
+            }
+
+            .cta-banner h1 {
+                font-size: 2rem;
+            }
+
+            .btn-cta {
+                padding: 0.6rem 2rem;
+                font-size: 1rem;
+            }
+
+            .about-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .top-bar .contact-info {
+                font-size: 0.8rem;
+            }
+
+            .top-bar .social-icons a {
+                width: 28px;
+                height: 28px;
+                font-size: 0.75rem;
+            }
+
+            .navbar-brand img {
+                width: 70px;
+                height: 63px;
+            }
+
+            .navbar-nav .nav-link {
+                padding: 0.5rem 1rem !important;
+                font-size: 0.85rem;
+            }
+
+            #heroCarousel .carousel-item img {
+                height: 280px;
+            }
+
+            .carousel-caption h2 {
+                font-size: 1.5rem;
+            }
+
+            .carousel-caption p {
+                font-size: 0.85rem;
+            }
+
+            .cta-banner h1 {
+                font-size: 1.6rem;
+            }
+
+            .cta-banner h4 {
+                font-size: 1rem;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.75rem;
+            }
+
+            .stat-item .number {
+                font-size: 1.8rem;
+            }
+
+            .contact-info-card {
+                padding: 1.5rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+        }
+
+        /* ===== ANIMAÇÕES ===== */
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* ===== BOTÃO VOLTAR AO TOPO ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-main);
+            color: white;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* ===== WHATSAPP FLOAT ===== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            z-index: 999;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .whatsapp-float a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            color: white;
+            border-radius: 50%;
+            font-size: 2rem;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: var(--transition);
+        }
+
+        .whatsapp-float a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 40px rgba(37, 211, 102, 0.6);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== TOP BAR ===== -->
+    <div class="top-bar py-2">
+        <div class="container d-flex flex-wrap justify-content-between align-items-center">
+            <div class="contact-info d-flex flex-wrap align-items-center gap-3">
+                <a href="mailto:watercore@gmail.com">
+                    <i class="bi bi-envelope-fill me-1"></i> watercore@gmail.com
+                </a>
+                <span class="d-none d-sm-inline text-white-50">|</span>
+                <a href="tel:+258840000000" class="d-none d-sm-inline">
+                    <i class="bi bi-telephone-fill me-1"></i> +258 84 000 0000
+                </a>
+                <span class="d-none d-md-inline text-white-50">|</span>
+                <a href="#" class="d-none d-md-inline">
+                    <i class="bi bi-clock me-1"></i> Seg-Sex: 8h - 17h
+                </a>
+            </div>
+            <div class="social-icons d-flex gap-2">
+                <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="./assets/img/logo.png" alt="WaterCore Logo" width="100" height="90" class="img-fluid" />
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#servicos">Serviços</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#produtos">Produtos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#diferenciais">Diferenciais</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#depoimentos">Depoimentos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== CAROUSEL ===== -->
+    <section id="home" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#home" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#home" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#home" data-bs-slide-to="2"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="./assets/img/image1.png" class="d-block w-100" alt="Pureza" />
+                <div class="carousel-caption">
+                    <h2>Pureza Mineral</h2>
+                    <p>Pureza que flui, confiança que renova.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="./assets/img/image2.png" class="d-block w-100" alt="Sustentabilidade" />
+                <div class="carousel-caption">
+                    <h2>Sustentabilidade</h2>
+                    <p>Água para hoje, cuidado para o amanhã.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="./assets/img/image3.png" class="d-block w-100" alt="Conexão" />
+                <div class="carousel-caption">
+                    <h2>Conexão com a Vida</h2>
+                    <p>Conectando você à fonte da vida.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#home" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#home" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </section>
+
+    <!-- ===== SEÇÃO SOBRE ===== -->
+    <section id="sobre" class="about-section">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6">
+                    <div class="about-image">
+                        <img src="./assets/img/image2.png" alt="Sobre a WaterCore" />
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-content">
+                        <h2>Sobre a <span>WaterCore</span></h2>
+                        <p>
+                            A <strong>WaterCore</strong> é uma empresa moçambicana dedicada ao fornecimento de água mineral 
+                            de alta qualidade, com foco na sustentabilidade e no atendimento às necessidades das comunidades locais.
+                        </p>
+                        <p>
+                            Fundada com o propósito de garantir acesso confiável à água, a WaterCore busca transformar a forma 
+                            como este recurso essencial é distribuído e consumido no país.
+                        </p>
+                        <p>
+                            Nossa água é extraída de fontes minerais naturais na região de Marracuene, passando por rigorosos 
+                            processos de controle de qualidade para garantir a pureza e os benefícios à saúde.
+                        </p>
+                        <div class="about-stats">
+                            <div class="stat-item">
+                                <div class="number">10+</div>
+                                <div class="label">Anos de Experiência</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="number">50K+</div>
+                                <div class="label">Clientes Atendidos</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="number">99.9%</div>
+                                <div class="label">Pureza Garantida</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="number">100%</div>
+                                <div class="label">Sustentável</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEÇÃO SERVIÇOS ===== -->
+    <section id="servicos" class="services-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nossos <span>Serviços</span></h2>
+                <p>Oferecemos soluções completas em água mineral para diferentes necessidades</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h5>Entrega Domiciliar</h5>
+                        <p>Entregamos água mineral diretamente na sua casa ou empresa, com pontualidade e segurança.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h5>Fornecimento Corporativo</h5>
+                        <p>Soluções personalizadas para empresas, escritórios e indústrias com alto consumo de água.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h5>Distribuição em Grande Escala</h5>
+                        <p>Atendemos eventos, construções e projetos especiais com capacidade de grande volume.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-recycle"></i>
+                        </div>
+                        <h5>Reciclagem de Garrafões</h5>
+                        <p>Programa de recolha e reciclagem de garrafões para reduzir o impacto ambiental.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h5>Análise de Qualidade</h5>
+                        <p>Realizamos análises laboratoriais para garantir a pureza e qualidade da nossa água.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <h5>Programa Social</h5>
+                        <p>Iniciativas de acesso à água potável para comunidades carentes em Moçambique.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEÇÃO PRODUTOS ===== -->
+    <section id="produtos" class="products-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nossos <span>Produtos</span></h2>
+                <p>Conheça nossa linha completa de água mineral</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="./assets/img/image1.png" alt="Água Mineral 20L" />
+                            <span class="badge">Mais Vendido</span>
+                        </div>
+                        <div class="product-body">
+                            <h5>Garrafão 20L</h5>
+                            <div class="price">250 MZN</div>
+                            <p>Água mineral pura para uso doméstico e empresarial. Ideal para bebedouros.</p>
+                            <button class="btn-order">Encomendar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="./assets/img/image2.png" alt="Água Mineral 1.5L" />
+                            <span class="badge">Popular</span>
+                        </div>
+                        <div class="product-body">
+                            <h5>Garrafa 1.5L</h5>
+                            <div class="price">45 MZN</div>
+                            <p>Perfeita para consumo individual, prática e sustentável.</p>
+                            <button class="btn-order">Encomendar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="./assets/img/image3.png" alt="Água Mineral 500ml" />
+                            <span class="badge">Novo</span>
+                        </div>
+                        <div class="product-body">
+                            <h5>Garrafa 500ml</h5>
+                            <div class="price">25 MZN</div>
+                            <p>Ideal para viagens, eventos e consumo rápido. Leve e prática.</p>
+                            <button class="btn-order">Encomendar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEÇÃO DIFERENCIAIS ===== -->
+    <section id="diferenciais" class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nossos <span>Diferenciais</span></h2>
+                <p>Por que escolher a WaterCore</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="icon-wrapper">
+                            <i class="fa fa-globe"></i>
+                        </div>
+                        <h5>Mineral Natural</h5>
+                        <p>Água mineral da região de Marracuene, reconhecida pela sua qualidade e frescura incomparáveis.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="icon-wrapper">
+                            <i class="fa fa-flask"></i>
+                        </div>
+                        <h5>Qualidade Controlada</h5>
+                        <p>Rigoroso controle de qualidade seguindo os mais elevados padrões da SAM e normas internacionais.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="icon-wrapper">
+                            <i class="fa fa-cogs"></i>
+                        </div>
+                        <h5>Enchimento Automático</h5>
+                        <p>Processo industrial automatizado que preserva a pureza da água desde a extração ao engarrafamento.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h5>Compromisso Ambiental</h5>
+                        <p>Práticas sustentáveis em toda nossa cadeia de produção e distribuição.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h5>Certificação de Qualidade</h5>
+                        <p>Certificados internacionais que atestam a pureza e qualidade da nossa água.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h5>Atendimento Personalizado</h5>
+                        <p>Equipe treinada para oferecer o melhor atendimento e soluções para cada cliente.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEÇÃO DEPOIMENTOS ===== -->
+    <section id="depoimentos" class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>O que nossos <span>clientes dizem</span></h2>
+                <p>Depoimentos de quem confia na qualidade da WaterCore</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="quote">"A WaterCore transformou nosso acesso à água. Qualidade incomparável e entrega sempre pontual. Recomendo!"</p>
+                        <div class="author">
+                            <img src="https://ui-avatars.com/api/?name=João+Silva&background=0a6e8a&color=fff&size=60" alt="João Silva" />
+                            <div>
+                                <div class="name">João Silva</div>
+                                <div class="role">Empresário</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="quote">"A água da WaterCore é a melhor que já experimentei. Sinto a diferença na minha saúde e bem-estar."</p>
+                        <div class="author">
+                            <img src="https://ui-avatars.com/api/?name=Maria+Santos&background=0a6e8a&color=fff&size=60" alt="Maria Santos" />
+                            <div>
+                                <div class="name">Maria Santos</div>
+                                <div class="role">Cliente Residencial</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="quote">"Como empresa, confiamos na WaterCore para fornecer água aos nossos colaboradores. Excelente serviço!"</p>
+                        <div class="author">
+                            <img src="https://ui-avatars.com/api/?name=Carlos+Almeida&background=0a6e8a&color=fff&size=60" alt="Carlos Almeida" />
+                            <div>
+                                <div class="name">Carlos Almeida</div>
+                                <div class="role">Gestor de RH</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEÇÃO BLOG ===== -->
+    <section id="blog" class="blog-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Blog & <span>Notícias</span></h2>
+                <p>Fique por dentro das novidades sobre água e sustentabilidade</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="./assets/img/image1.png" alt="Benefícios da Água Mineral" />
+                        </div>
+                        <div class="blog-body">
+                            <span class="category">Saúde</span>
+                            <h5>Benefícios da Água Mineral para a Saúde</h5>
+                            <p>Descubra como a água mineral pode melhorar sua saúde e bem-estar diário.</p>
+                            <a href="#" class="read-more">Leia mais <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="./assets/img/image2.png" alt="Sustentabilidade" />
+                        </div>
+                        <div class="blog-body">
+                            <span class="category">Sustentabilidade</span>
+                            <h5>Práticas Sustentáveis na Gestão da Água</h5>
+                            <p>Conheça nossas iniciativas para preservar os recursos hídricos em Moçambique.</p>
+                            <a href="#" class="read-more">Leia mais <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="./assets/img/image3.png" alt="Tecnologia" />
+                        </div>
+                        <div class="blog-body">
+                            <span class="category">Tecnologia</span>
+                            <h5>Tecnologia e Inovação no Tratamento de Água</h5>
+                            <p>Como a tecnologia está revolucionando o acesso à água potável.</p>
+                            <a href="#" class="read-more">Leia mais <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEÇÃO CONTATO ===== -->
+    <section id="contato" class="contact-section-main">
+        <div class="container">
+            <div class="section-header">
+                <h2>Entre em <span>Contato</span></h2>
+                <p>Estamos aqui para atender você</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-5">
+                    <div class="contact-info-card">
+                        <h4 class="mb-4">Informações de Contato</h4>
+                        <div class="info-item">
+                            <div class="icon">
+                                <i class="bi bi-geo-alt"></i>
+                            </div>
+                            <div class="text">
+                                <h6>Endereço</h6>
+                                <p>Avenida 24 Julho, Nº 167<br />Maputo, Moçambique</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="icon">
+                                <i class="bi bi-telephone"></i>
+                            </div>
+                            <div class="text">
+                                <h6>Telefone</h6>
+                                <p>+258 84 000 0000</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="icon">
+                                <i class="bi bi-envelope"></i>
+                            </div>
+                            <div class="text">
+                                <h6>E-mail</h6>
+                                <p>watercore@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="icon">
+                                <i class="bi bi-clock"></i>
+                            </div>
+                            <div class="text">
+                                <h6>Horário de Atendimento</h6>
+                                <p>Segunda a Sexta: 8h - 17h</p>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="social-links d-flex gap-3">
+                            <a href="#" class="text-decoration-none text-secondary fs-4"><i class="bi bi-facebook"></i></a>
+                            <a href="#" class="text-decoration-none text-secondary fs-4"><i class="bi bi-instagram"></i></a>
+                            <a href="#" class="text-decoration-none text-secondary fs-4"><i class="bi bi-linkedin"></i></a>
+                            <a href="#" class="text-decoration-none text-secondary fs-4"><i class="bi bi-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="contact-form">
+                        <h4 class="mb-4">Envie uma Mensagem</h4>
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="nome" class="form-label fw-semibold">Nome Completo</label>
+                                    <input type="text" class="form-control" id="nome" placeholder="Seu nome completo" required />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label fw-semibold">E-mail</label>
+                                    <input type="email" class="form-control" id="email" placeholder="seu@email.com" required />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="telefone" class="form-label fw-semibold">Telefone</label>
+                                    <input type="tel" class="form-control" id="telefone" placeholder="+258 84 000 0000" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="assunto" class="form-label fw-semibold">Assunto</label>
+                                    <select class="form-select" id="assunto">
+                                        <option selected>Selecione o assunto</option>
+                                        <option>Informações sobre produtos</option>
+                                        <option>Encomenda e entrega</option>
+                                        <option>Parcerias e contratos</option>
+                                        <option>Dúvidas gerais</option>
+                                        <option>Outro</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label for="mensagem" class="form-label fw-semibold">Mensagem</label>
+                                    <textarea class="form-control" id="mensagem" rows="5" placeholder="Digite sua mensagem aqui..." required></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn-submit">
+                                        <i class="bi bi-send me-2"></i> Enviar Mensagem
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA BANNER ===== -->
+    <section class="cta-banner">
+        <div class="container cta-content text-center">
+            <h1>Pronto para experimentar a melhor água mineral?</h1>
+            <h4>Entre em contato conosco e descubra a diferença da água com qualidade</h4>
+            <a href="#contato" class="btn-cta">
+                <i class="bi bi-whatsapp"></i> Faça seu Pedido
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-4 col-md-12">
+                    <div class="brand-text">WATERCORE</div>
+                    <p class="mt-3">A WaterCore é uma empresa moçambicana dedicada ao fornecimento de água mineral de alta qualidade, com foco na sustentabilidade e no atendimento às necessidades das comunidades locais.</p>
+                    <div class="social-links d-flex gap-3 mt-4">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                        <a href="#"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-6">
+                    <h5>Links Rápidos</h5>
+                    <ul>
+                        <li><a href="#sobre">Sobre Nós</a></li>
+                        <li><a href="#servicos">Serviços</a></li>
+                        <li><a href="#produtos">Produtos</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-6">
+                    <h5>Institucional</h5>
+                    <ul>
+                        <li><a href="#">Atribuições</a></li>
+                        <li><a href="#">Competências</a></li>
+                        <li><a href="#">Estatuto</a></li>
+                        <li><a href="#">Estrutura</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-12">
+                    <h5>Contato</h5>
+                    <div class="contact-info">
+                        <p><i class="bi bi-geo-alt"></i> Avenida 24 Julho, Nº 167, Maputo</p>
+                        <p><i class="bi bi-telephone"></i> +258 84 000 0000</p>
+                        <p><i class="bi bi-envelope"></i> watercore@gmail.com</p>
+                        <p><i class="bi bi-clock"></i> Seg-Sex: 8h - 17h</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                &copy; 2024 <span>Denilton Ngale</span> | WaterCore - Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== BOTÃO VOLTAR AO TOPO ===== -->
+    <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
+        <i class="bi bi-chevron-up"></i>
+    </button>
+
+    <!-- ===== WHATSAPP FLOAT ===== -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/258840000000" target="_blank" aria-label="WhatsApp">
+            <i class="bi bi-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // ===== NAVBAR SCROLL EFFECT =====
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('mainNav');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ===== BACK TO TOP BUTTON =====
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // ===== CAROUSEL AUTO-PLAY =====
+        const carousel = document.querySelector('.carousel');
+        if (carousel) {
+            const carouselInstance = new bootstrap.Carousel(carousel, {
+                interval: 5000,
+                ride: 'carousel',
+                pause: 'hover'
+            });
+        }
+
+        // ===== SMOOTH SCROLL PARA LINKS =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
